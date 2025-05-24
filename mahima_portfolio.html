@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahima M - Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Professional Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .profile-info .title {
+            font-size: 1.1rem;
+            color: #bdc3c7;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        /* Compact horizontal contact layout */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .contact-item {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        .separator {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+            margin: 0 2px;
+        }
+
+        /* Professional Tab Container */
+        .tab-container {
+            background: white;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Clean Tab Navigation */
+        .tab-nav {
+            display: flex;
+            background: #f8f9fa;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            gap: 8px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #6c757d;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            min-width: 120px;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .tab-button.active {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 40px;
+            min-height: 500px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: justify;
+            color: #495057;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-item {
+            background: #2c3e50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .job {
+            background: #f8f9fa;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .job:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .company-duration {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .duration {
+            background: #2c3e50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project {
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .project-links {
+            margin-bottom: 15px;
+        }
+
+        .playstore-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .playstore-link:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .achievements {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .achievements li {
+            padding: 4px 0;
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #495057;
+        }
+
+        .achievements li::before {
+            content: '•';
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Education Section */
+        .education-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .education-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .degree {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .field {
+            font-size: 1.1rem;
+            color: #495057;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .profile-info {
+                text-align: center;
+            }
+
+            .profile-info h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-info {
+                justify-content: center;
+                gap: 6px;
+            }
+
+            .tab-content {
+                padding: 25px 20px;
+            }
+
+            .company-duration {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .contact-item {
+                width: auto;
+                justify-content: center;
+            }
+
+            .tab-nav {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .tab-button {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .tab-content {
+                padding: 20px 15px;
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-img">MM</div>
+                <div class="profile-info">
+                    <h1>Mahima M</h1>
+                    <p class="title">Software Engineer</p>
+                    <div class="contact-info">
+                        <a href="mailto:mahimabhat25@gmail.com" class="contact-item">
+                            📧 mahimabhat25@gmail.com
+                        </a>
+                        <span class="separator">•</span>
+                        <span class="contact-item">
+                            📱 +91 85499 09258
+                        </span>
+                        <span class="separator">•</span>
+                        <a href="https://github.com/mahi252001" class="contact-item" target="_blank">
+                            🔗 GitHub
+                        </a>
+                        <span class="separator">•</span>
+                        <a href="https://www.linkedin.com/in/mahima-m-706288190/" class="contact-item" target="_blank">
+                            💼 LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="tab-container">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="openTab(event, 'about')">About</button>
+                <button class="tab-button" onclick="openTab(event, 'skills')">Skills</button>
+                <button class="tab-button" onclick="openTab(event, 'experience')">Experience</button>
+                <button class="tab-button" onclick="openTab(event, 'education')">Education</button>
+            </div>
+
+            <!-- About Tab -->
+            <div id="about" class="tab-content active">
+                <h2 class="section-header">About Me</h2>
+                <div class="about-content">
+                    <p>Android Developer with 2+ years of experience building scalable, user-focused healthcare applications. Proficient in Kotlin, Jetpack Compose and KMM with a strong grasp of MVVM, BLE integrations, and client-server communication.</p>
+                    
+                    <p>Proven success in improving app performance, accessibility, and cost efficiency. Known for releasing high-quality apps in fast-paced environments while maintaining robust code quality and test coverage. Passionate about creating innovative mobile solutions that make a real impact in healthcare technology.</p>
+                    
+                    <p>With a strong foundation in Information Science and Engineering, I bring both technical expertise and practical experience to every project, consistently delivering results that exceed expectations and drive user engagement.</p>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills" class="tab-content">
+                <h2 class="section-header">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Mobile Development</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Android</span>
+                            <span class="skill-item">Kotlin</span>
+                            <span class="skill-item">Jetpack Compose</span>
+                            <span class="skill-item">KMM</span>
+                            <span class="skill-item">React Native</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Architecture & Design</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">MVVM</span>
+                            <span class="skill-item">Data Structures</span>
+                            <span class="skill-item">Algorithms</span>
+                            <span class="skill-item">Multithreading</span>
+                            <span class="skill-item">BLE Integration</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Libraries</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">SQLite</span>
+                            <span class="skill-item">Retrofit</span>
+                            <span class="skill-item">Dagger Hilt</span>
+                            <span class="skill-item">WebSockets</span>
+                            <span class="skill-item">Google Maps API</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Development Practices</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Unit Testing</span>
+                            <span class="skill-item">Code Quality</span>
+                            <span class="skill-item">Performance Optimization</span>
+                            <span class="skill-item">Accessibility</span>
+                            <span class="skill-item">Agile Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Tab -->
+            <div id="experience" class="tab-content">
+                <h2 class="section-header">Professional Experience</h2>
+                <div class="experience-timeline">
+                    
+                    <!-- Current Role -->
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title">Software Engineer</div>
+                            <div class="company-duration">
+                                <div class="company">Biofourmis</div>
+                                <div class="duration">Apr 2023 - Present</div>
+                            </div>
+                        </div>
+                        
+                        <div class="project">
+                            <div class="project-title">Biofourmis Care Patient App</div>
+                            <div class="project-links">
+                                <a href="https://play.google.com/store/search?q=biofourmis%20care%20patient&c=apps" 
+                                   class="playstore-link" target="_blank">
+                                    📱 View on Play Store (500+ Downloads)
+                                </a>
+                            </div>
+                            <ul class="achievements">
+                                <li>Enabled multi-language support across 5+ languages, expanding market reach</li>
+                                <li>Developed device-agnostic mobile solutions, enhancing scalability and reducing hardware dependency</li>
+                                <li>Improved app accessibility through customizable font-size adjustments, leading to a 10% increase in positive user feedback</li>
+                                <li>Implemented real-time location sharing with Google Maps API, increasing engagement among 1,000+ daily active users</li>
+                                <li>Migrated key UI components to Jetpack Compose, enhancing app performance by 25% and reducing development time by 30%</li>
+                                <li>Integrated Transtek weigh scale with Auto sync functionality</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project">
+                            <div class="project-title">Biofourmis Care@Home HCP App</div>
+                            <div class="project-links">
+                                <a href="https://play.google.com/store/apps/details?id=com.biofourmis.careathomecareprovider" 
+                                   class="playstore-link" target="_blank">
+                                    📱 View on Play Store (100+ Downloads)
+                                </a>
+                            </div>
+                            <ul class="achievements">
+                                <li>Developed a clinical notes module that increased clinician efficiency by 30%</li>
+                                <li>Introduced dynamic thresholds for patient vitals, improving monitoring accuracy by 25% and reducing response time for critical events by 15%</li>
+                                <li>Raised unit testing coverage from 0% to 55%, reinforcing code quality</li>
+                                <li>Led a rebranding initiative, updating UI elements, themes, and logos, resulting in a 20% increase in user engagement</li>
+                                <li>Integrated ECG visualization, supporting real-time patient monitoring for 300+ patients</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Previous Role -->
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title">Associate Software Engineer</div>
+                            <div class="company-duration">
+                                <div class="company">Biofourmis</div>
+                                <div class="duration">Aug 2022 - Mar 2023</div>
+                            </div>
+                        </div>
+                        
+                        <div class="project">
+                            <div class="project-title">Biovitals H@H HCP App</div>
+                            <div class="project-links">
+                                <span style="color: #666; font-size: 0.9rem;">Healthcare Provider Application</span>
+                            </div>
+                            <ul class="achievements">
+                                <li>Designed a multi-tier notification hierarchy with escalation protocols, reducing missed critical alerts by 40%</li>
+                                <li>Added custom date filters for vital charting, improving search capabilities and data retrieval efficiency by 40%</li>
+                                <li>Enhanced app navigation with multi-back stack support, leading to a 15% decrease in user-reported navigation issues</li>
+                                <li>Developed a task flow management system for healthcare providers, increasing task completion efficiency by 25%</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project">
+                            <div class="project-title">H@H Patient App</div>
+                            <div class="project-links">
+                                <span style="color: #666; font-size: 0.9rem;">Widely used in MDM setup</span>
+                            </div>
+                            <ul class="achievements">
+                                <li>Optimized chat, audio, and video call functionalities, reducing error reports by 40%</li>
+                                <li>Reduced log overflow by 70% through improved logging techniques, significantly boosting app stability</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Internship -->
+                    <div class="job">
+                        <div class="job-header">
+                            <div class="job-title">Software Intern</div>
+                            <div class="company-duration">
+                                <div class="company">Biofourmis</div>
+                                <div class="duration">Jun 2022 - Jul 2022</div>
+                            </div>
+                        </div>
+                        
+                        <div class="project">
+                            <div class="project-title">Android Development</div>
+                            <ul class="achievements">
+                                <li>Assisted in Android app development with Kotlin, contributing to bug fixes and feature implementations</li>
+                                <li>Improved user experience across applications through systematic testing and optimization</li>
+                                <li>Gained hands-on experience with healthcare application development and industry best practices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Tab -->
+            <div id="education" class="tab-content">
+                <div class="education-content">
+                    <div class="education-card">
+                        <h2 class="section-header">Education</h2>
+                        <div class="degree">Bachelor of Engineering</div>
+                        <div class="field">Information Science and Engineering</div>
+                        <p style="margin-top: 20px; color: #666; font-style: italic;">
+                            Strong foundation in computer science fundamentals, software engineering principles, 
+                            and information systems design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mahima M - Professional Software Engineer Portfolio</p>
+            <div class="footer-links">
+                <a href="mailto:mahimabhat25@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/mahi252001" class="footer-link" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/mahima-m-706288190/" class="footer-link" target="_blank">LinkedIn</a>
+                <span class="footer-link">+91 85499 09258</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Hide all tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: document.querySelector('.tab-container').offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
